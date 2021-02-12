@@ -18,9 +18,6 @@ package io.apicurio.registry.demo.simple.json;
 
 import io.apicurio.registry.client.RegistryRestClient;
 import io.apicurio.registry.client.RegistryRestClientFactory;
-import io.apicurio.registry.rest.beans.ArtifactMetaData;
-import io.apicurio.registry.rest.beans.IfExistsType;
-import io.apicurio.registry.types.ArtifactType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,8 +75,8 @@ public class SimpleJsonSchemaBootstrapper {
         LOGGER.info("=====> Creating artifact in the registry for JSON Schema with ID: {}", artifactId);
         try {
             ByteArrayInputStream content = new ByteArrayInputStream(schema.getBytes(StandardCharsets.UTF_8));
-            ArtifactMetaData metaData = client.createArtifact(ArtifactType.JSON, artifactId, IfExistsType.RETURN, content);
-            LOGGER.info("=====> Successfully created JSON Schema artifact in Service Registry: {}", metaData);
+            //ArtifactMetaData metaData = client.createArtifact(ArtifactType.JSON, artifactId, IfExistsType.RETURN, content);
+            //LOGGER.info("=====> Successfully created JSON Schema artifact in Service Registry: {}", metaData);
             LOGGER.info("---------------------------------------------------------");
         } catch (Exception t) {
             throw t;

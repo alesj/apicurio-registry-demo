@@ -1,20 +1,5 @@
 package io.apicurio.registry.test;
 
-import static io.apicurio.registry.demo.utils.PropertiesUtil.property;
-
-import java.io.ByteArrayInputStream;
-import java.util.Properties;
-
-import javax.ws.rs.WebApplicationException;
-
-import org.apache.kafka.clients.CommonClientConfigs;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import io.apicurio.registry.client.RegistryRestClient;
 import io.apicurio.registry.client.RegistryRestClientFactory;
 import io.apicurio.registry.demo.ApplicationImpl;
@@ -26,6 +11,19 @@ import io.apicurio.registry.utils.serde.AbstractKafkaSerDe;
 import io.apicurio.registry.utils.serde.AbstractKafkaSerializer;
 import io.apicurio.registry.utils.serde.AvroKafkaSerializer;
 import io.apicurio.registry.utils.serde.strategy.FindLatestIdStrategy;
+import org.apache.kafka.clients.CommonClientConfigs;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.ws.rs.WebApplicationException;
+import java.io.ByteArrayInputStream;
+import java.util.Properties;
+
+import static io.apicurio.registry.demo.utils.PropertiesUtil.property;
 
 /**
  * @author Ales Justin
@@ -44,8 +42,8 @@ public class TestMain {
             service.getArtifactMetaData(artifactId); // check if schema already exists
         } catch (WebApplicationException e) {
             service.createArtifact(
-                ArtifactType.AVRO,
                 artifactId,
+                ArtifactType.AVRO,
                 IfExistsType.RETURN,
                 new ByteArrayInputStream(LogInput.SCHEMA$.toString().getBytes())
             );

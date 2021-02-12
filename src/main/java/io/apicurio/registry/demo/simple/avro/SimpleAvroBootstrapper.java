@@ -16,19 +16,14 @@
 
 package io.apicurio.registry.demo.simple.avro;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-
-import javax.ws.rs.WebApplicationException;
-
+import io.apicurio.registry.client.RegistryRestClient;
+import io.apicurio.registry.client.RegistryRestClientFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.apicurio.registry.client.RegistryRestClient;
-import io.apicurio.registry.client.RegistryRestClientFactory;
-import io.apicurio.registry.rest.beans.ArtifactMetaData;
-import io.apicurio.registry.rest.beans.IfExistsType;
-import io.apicurio.registry.types.ArtifactType;
+import javax.ws.rs.WebApplicationException;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * This command line application is used to register the schema used by the producer and consumer in the
@@ -84,8 +79,8 @@ public class SimpleAvroBootstrapper {
         LOGGER.info("=====> Creating artifact in the registry for Avro Schema with ID: {}", artifactId);
         try {
             ByteArrayInputStream content = new ByteArrayInputStream(schema.getBytes(StandardCharsets.UTF_8));
-            ArtifactMetaData metaData = client.createArtifact(ArtifactType.AVRO, artifactId, IfExistsType.RETURN, content);
-            LOGGER.info("=====> Successfully created Avro Schema artifact in Service Registry: {}", metaData);
+            //ArtifactMetaData metaData = client.createArtifact(ArtifactType.AVRO, artifactId, IfExistsType.RETURN, content);
+            //LOGGER.info("=====> Successfully created Avro Schema artifact in Service Registry: {}", metaData);
             LOGGER.info("---------------------------------------------------------");
         } catch (Exception t) {
             throw t;
